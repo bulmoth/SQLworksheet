@@ -1,0 +1,31 @@
+--그룹 나누기
+--그룹을 나누면 집계함수만 써야함
+
+--FROM > WHERE >  GROUP BY >  HAVING > SELECT > ORDER BY
+
+SELECT AVG(SAL), DEPTNO--4번
+FROM EMP--1번
+WHERE COMM IS NOT NULL--2번
+GROUP BY DEPTNO--3번
+ORDER BY DEPTNO DESC--5번, ORDER BY는 항상 SELECT 이후에(마지막에) 이루어짐
+;
+
+--그룹핑 된 결과집합에서 조건을 걸고 싶으면 HAVING
+SELECT AVG(SAL), DEPTNO
+FROM EMP
+WHERE COMM IS NOT NULL
+GROUP BY DEPTNO
+HAVING AVG(SAL)>2000    --그룹핑 결과에 대한 조건 설정
+AND DEPTNO < 15
+ORDER BY DEPTNO DESC
+;
+
+--실행 순서
+/*
+    1. FROM
+    2. WHERE
+    3. GROUP BY
+    4. HAVING
+    5. SELECT
+    6. ORDER BY
+*/

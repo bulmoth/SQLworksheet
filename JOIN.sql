@@ -1,0 +1,35 @@
+--JOIN
+
+/*
+    -EQUI JOIN : INNER JOIN,
+    -NON-EQUI JOIN
+
+    -INNER JOIN : 똑같은 값이 있는 경우만 JOIN 해주겠다
+    -OUTER JOIN(LEFT, RIGHT, FULL) : 
+    -CROSS JOIN
+    -SELF JOIN
+*/
+
+SELECT *
+FROM EMP
+;
+
+SELECT *
+FROM DEPT
+;
+
+SELECT 
+      ENAME 사원명
+    , E.DEPTNO 부서번호
+    , DNAME 부서이름
+FROM EMP E
+INNER JOIN DEPT D ON E.DEPTNO = D.DEPTNO --ANSI표준
+;
+
+SELECT 
+      ENAME 사원명
+    , E.DEPTNO 부서번호
+    , DNAME 부서이름
+FROM EMP E, DEPT D
+WHERE E.DEPTNO = D.DEPTNO --ORACLE지원
+;

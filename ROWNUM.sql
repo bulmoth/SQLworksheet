@@ -1,0 +1,12 @@
+--ROWNUM
+
+--테이블명.컬럼명 (테이블명 생략 가능)
+SELECT E.EMPNO, E.ENAME
+FROM EMP E
+;
+
+--ROWNUM : 행(==ROW ==RECORD) 번호를 붙여줌
+SELECT ROWNUM AS RNUM, E.*
+FROM EMP E
+WHERE ROWNUM <10
+;

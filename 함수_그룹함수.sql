@@ -1,0 +1,22 @@
+--함수 (집계)
+--연산을 거쳐 한 칸으로 보여주는 함수들
+
+--모든 ROW의 갯수를 세어 준다.
+SELECT COUNT(*)
+FROM EMP;
+
+--AVG
+SELECT AVG(SAl)
+FROM EMP;
+
+--SUM
+SELECT SUM(SAL)
+FROM EMP;
+
+--MIN
+SELECT MIN(SAL)
+FROM EMP;
+
+--MAX
+SELECT MAX(SAL)
+FROM EMP;
