@@ -1,0 +1,30 @@
+--시퀀스
+
+--생성
+DROP SEQUENCE MEMBER_NO_SEQ;
+CREATE SEQUENCE MEMBER_NO_SEQ
+INCREMENT BY 1  --증가하는 값 설정 가능(음수도 가능)
+ START WITH 1    --시작값
+MINVALUE 1  --최소값
+MAXVALUE 999 --최대값
+NOCYCLE --||CYCLE --순환 여부(최대값에서 다시 최소값으로 올것인지)
+NOCACHE --캐시 여부(사이즈) 
+;
+
+--캐싱 : 데이터를 임시로(미리) 퍼오는 것(데이터의 일부를)
+
+--사용
+SELECT MEMBER_NO_SEQ.NEXTVAL
+FROM DUAL;  --하나 올라간 값
+
+SELECT MEMBER_NO_SEQ.CURRVAL
+FROM DUAL;  --현재값
+
+--수정
+ALTER SEQUENCE MEMBER_NO_SEQ
+INCREMENT BY 2
+MINVALUE -1
+MAXVALUE 123
+CYCLE
+CACHE 100
+;
