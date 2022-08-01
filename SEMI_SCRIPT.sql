@@ -29,32 +29,18 @@ COMMIT;
 
 
 -----TEST. 사용하고 지울 예정--------
-INSERT INTO MEMBER(
-    NO
-    , ID
-    , PWD
-    , NAME
-    , PHONE
-    , EMAIL
-    , ADDR
-    , INTEREST
-    )
-VALUES(
-    SEQ_MEMBER_NO.NEXTVAL
-    , 'USER0728'
-    , '1234'
-    , '유저'
-    , '01012341234'
-    , 'user@yaho.com'
-    , '강남구 역삼동 테헤란로 123'
-    , 'game,cook,book'
-);
 
 SELECT * FROM MEMBER;
 
-SELECT *
-FROM MEMBER
-WHERE ID = 'USER00'
-AND PWD = '1234'
-AND STATUS = 'N'
+UPDATE MEMBER
+SET 
+NAME = ?
+, EMAIL = ?
+, PHONE = ?
+, ADDR = ?
+, INTEREST = ?
+, MODIFY_DATE = SYSDATE
+WHERE NO = ?
 ;
+
+ROLLBACK;
