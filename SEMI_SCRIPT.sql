@@ -65,23 +65,16 @@ COMMIT;
 
 -----TEST. 사용하고 지울 예정--------
 
-SELECT * FROM MEMBER;
-SELECT * FROM NOTICE;
-
-INSERT INTO NOTICE
-(
-    NO
-    ,TITLE
-    ,CONTENT
-    ,WRITER
-)
-VALUES
-(
-    SEQ_NOTICE_NO.NEXTVAL
-    ,'ZZZZZ'
-    ,'내용'
-    ,'1'
-)
+SELECT 
+    N.NO
+    ,N.TITLE
+    ,N.CONTENT
+    ,M.NAME AS WRITER
+    ,N.CNT
+    ,N.ENROLL_DATE
+    ,N.STATUS
+FROM NOTICE N
+JOIN MEMBER M ON N.WRITER = M.NO
+WHERE N.STATUS = 'N'
+AND N.NO = ?
 ;
-
-ROLLBACK;
