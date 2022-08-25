@@ -1,0 +1,151 @@
+------------------------
+--결제수단 테이블
+------------------------
+
+DROP TABLE PAYMENT_CREDIT_CARD CASCADE CONSTRAINTS;
+CREATE TABLE PAYMENT_CREDIT_CARD(
+    NO              NUMBER      PRIMARY KEY
+    ,MEMBER_NO       NUMBER      NOT NULL
+    ,CARD_NUM        CHAR(16)    NOT NULL
+    ,VALID_DATE      CHAR(4)     NOT NULL
+    ,CARD_PWD        CHAR(2)     NOT NULL
+    ,BIRTH           CHAR(8)
+    ,PASSWORD        NUMBER      NOT NULL
+    ,REGISTRATION    CHAR(10)
+    ,DEFAULT_YN      CHAR(1)     DEFAULT 'N' CHECK(DEFAULT_YN IN('N','Y'))
+);
+
+--결제수단 시퀀스
+DROP SEQUENCE SEQ_PAYMENT_NO;
+CREATE SEQUENCE SEQ_PAYMENT_NO NOCACHE NOCYCLE;
+
+--회원번호 외래키
+ALTER TABLE PAYMENT_CREDIT_CARD ADD CONSTRAINT PAYMENT_MEMBER_REF_NO 
+FOREIGN KEY(MEMBER_NO) REFERENCES MEMBER(NO);
+
+--------------------------------
+--DUMMY DATA
+--------------------------------
+INSERT INTO PAYMENT_CREDIT_CARD(
+    NO
+    ,MEMBER_NO
+    ,CARD_NUM
+    ,VALID_DATE
+    ,CARD_PWD
+    ,BIRTH
+    ,PASSWORD
+    ,DEFAULT_YN
+)
+VALUES
+(
+    SEQ_PAYMENT_NO.NEXTVAL
+    ,1
+    ,'1111222233334444'
+    ,'0326'
+    ,'22'
+    ,'20000101'
+    ,123456
+    ,'Y'
+);
+
+INSERT INTO PAYMENT_CREDIT_CARD(
+    NO
+    ,MEMBER_NO
+    ,CARD_NUM
+    ,VALID_DATE
+    ,CARD_PWD
+    ,BIRTH
+    ,PASSWORD
+    ,DEFAULT_YN
+)
+VALUES
+(
+    SEQ_PAYMENT_NO.NEXTVAL
+    ,2
+    ,'1111222233335555'
+    ,'0326'
+    ,'22'
+    ,'20000101'
+    ,123456
+    ,'N'
+);
+
+INSERT INTO PAYMENT_CREDIT_CARD(
+    NO
+    ,MEMBER_NO
+    ,CARD_NUM
+    ,VALID_DATE
+    ,CARD_PWD
+    ,PASSWORD
+    ,REGISTRATION
+    ,DEFAULT_YN
+)
+VALUES
+(
+    SEQ_PAYMENT_NO.NEXTVAL
+    ,3
+    ,'1111222233337777'
+    ,'0326'
+    ,'22'
+    ,123456
+    ,'0123456789'
+    ,'Y'
+);
+
+INSERT INTO PAYMENT_CREDIT_CARD(
+    NO
+    ,MEMBER_NO
+    ,CARD_NUM
+    ,VALID_DATE
+    ,CARD_PWD
+    ,PASSWORD
+    ,REGISTRATION
+    ,DEFAULT_YN
+)
+VALUES
+(
+    SEQ_PAYMENT_NO.NEXTVAL
+    ,3
+    ,'1111222233338888'
+    ,'0326'
+    ,'22'
+    ,123456
+    ,'0123456789'
+    ,'N'
+);
+
+COMMIT;
+
+
+----------------------------
+--TEST
+----------------------------
+
+INSERT INTO PAYMENT_CREDIT_CARD(
+    NO
+    ,MEMBER_NO
+    ,CARD_NUM
+    ,VALID_DATE
+    ,CARD_PWD
+    ,PASSWORD
+    ,BIRTH
+    ,REGISTRATION
+    ,DEFAULT_YN
+)
+VALUES
+(
+    SEQ_PAYMENT_NO.NEXTVAL
+    ,?
+    ,?
+    ,?
+    ,?
+    ,?
+    ,?
+    ,?
+    ,?
+)
+;
+
+UPDATE PAYMENT_CREDIT_CARD SET DEFAULT_YN = 'N' WHERE MEMBER_NO = ? AND DEFAULT_YN = 'Y';
+
+SELECT * FROM PAYMENT_CREDIT_CARD;
